@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="reversi" default="all" basedir=".">
+
+	<!-- プロパティ ************************************************************************ -->
+	<property name="src.dir" value="src" />
+	<property name="class.dest" value="classes" />
+
+	<!-- ビルド **************************************************************************** -->
+	<!-- 全タスク実行	-->
+	<target name="all" depends="jar,clean" />
+
+	<!-- ディレクトリ作成	-->
+	<target name="mkdest">
+		<mkdir dir="${class.dest}" />
+	</target>
+
+	<!-- コンパイル	-->
+	<target name="compile" depends="mkdest">
+		<echo message="Compile START" />
+		<javac srcdir="${src.dir}" destdir="${class.dest}" excludes="test/**" source="1.6" encoding="MS932">
+		</javac>
+		<echo message="Compile END" />
+	</target>
+
+	<!-- JAR作成	-->
+	<target name="jar" depends="compile">
+		<jar basedir="${class.dest}" jarfile="../DroidReversi/libs/reversi.jar"></jar>
+	</target>
+
+	<!-- ディレクトリ削除	-->
+	<target name="clean">
+		<delete dir="${class.dest}" />
+	</target>
+
+</project>
